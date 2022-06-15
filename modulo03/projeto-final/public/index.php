@@ -4,7 +4,7 @@ include '../vendor/autoload.php';
 
 use App\Connection\Connection;
 
-$connection = Connection::getConnection();
+// $connection = Connection::getConnection();
 
 // $database = 'db_store';
 // $username = 'root';
@@ -12,25 +12,27 @@ $connection = Connection::getConnection();
 
 // $connection = new PDO('mysql:host=localhost;dbname='.$database, $username, $password);
 
-$query = 'SELECT * FROM tb_category;';
+// $query = 'SELECT * FROM tb_category;';
 
-$preparation = $connection->prepare($query);
-$preparation->execute();
+// $preparation = $connection->prepare($query);
+// $preparation->execute();
 
 // while ($registro = $preparation->fetch()) {
 //     var_dump($registro);
 // }
 
-var_dump($preparation->fetch());
+// var_dump($preparation->fetch());
 
 // var_dump($connection);
 
 
 // use App\controller\IndexController;
 // use App\controller\ProductController;
-// use App\controller\ErrorController;
+use App\controller\ErrorController;
 
-// $url = explode('?', $_SERVER['REQUEST_URI'])[0];
+$url = explode('?', $_SERVER['REQUEST_URI'])[0];
+
+$routes = include '../config/routes.php';
 
 // function createRoute(string $controllerName, string $methodName) {
 //     return [
@@ -46,18 +48,18 @@ var_dump($preparation->fetch());
 // ];
 
 
-// if (false === isset($routes[$url])) {
-//     // $c = new IndexController();
-//     // $c->indexAction();
-//     (new ErrorController())->notFoundAction();
+if (false === isset($routes[$url])) {
+    // $c = new IndexController();
+    // $c->indexAction();
+    (new ErrorController())->notFoundAction();
 
-//     exit;
-// }
+    exit;
+}
 
-// $controllerName = $routes[$url]['controller'];
-// $methodName = $routes[$url]['method'];
+$controllerName = $routes[$url]['controller'];
+$methodName = $routes[$url]['method'];
 
-// (new $controllerName())->$methodName();
+(new $controllerName())->$methodName();
 
 // var_dump($routes[$url]);
 

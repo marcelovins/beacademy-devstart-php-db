@@ -4,10 +4,24 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-class CategoryController 
+use App\Connection\Connection;
+
+class CategoryController extends AbstractController
 {
-    // public function IndexAction() : void
-    // {
-    //     echo 'estou dentro de uma Action, dentro do controller';
-    // }
+    public function listAction() : void
+    {
+        $con = Connection::getConnection();
+
+        $result = $con->prepare('SELECT * FROM tb_category');
+        $result->execute();
+
+        $catch = $result->fetch(\PDO::FETCH_ASSOC);
+
+        // var_dump($catch);
+        echo $catch['id'];
+        echo $catch['name'];
+        echo $catch['description'];
+
+        parent::render('category/list');
+    }
 }
