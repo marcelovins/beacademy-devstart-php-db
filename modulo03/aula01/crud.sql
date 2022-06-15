@@ -28,3 +28,12 @@ UPDATE tb_professor SET nome='Luiza Oliveira' WHERE cpf='22222222258';
 --caso não saiba id, pode usar outro indice--
 --update sem WHERE também atualiza tudo!!! Cuidado!!!
 
+
+-- selecionar todos os dados da tabela --
+SELECT * FROM tb_professor;
+
+-- com Where especificamos onde queremos selecionar --
+SELECT * FROM tb_professor WHERE id='5';
+
+-- selecionar alguns dados de todos --
+SELECT nome, cpf FROM tb_professor;
