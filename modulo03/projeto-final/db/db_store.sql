@@ -27,3 +27,8 @@ VALUES
 ('Informática', 'Produtos de informática e acessórios para computador'),
 ('Escritório', 'Canetas, cadernos, folhas, etc'),
 ('Eletrônicos', 'TVS, som portátil, caixas de som, etc');
+
+
+INSERT INTO tb_category (name, description)
+VALUES
+('Cama, mesa e banho', 'Produtos para a casa');
