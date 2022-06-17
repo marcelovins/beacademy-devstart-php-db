@@ -53,7 +53,42 @@ class ProductController extends AbstractController
     public function editAction() : void
     {
         // echo dirname(__DIR__);
-        parent::render('product/edit');
+        $id = $_GET['id'];
+
+        $con = Connection::getConnection();
+
+        // $categories = $con->prepare("SELECT * FROM tb_category");
+        // $categories->execute();
+
+        if ($_POST) {
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $value = $_POST['value'];
+            $photo = $_POST['photo'];
+            $quantity = $_POST['quantity'];
+
+            $query = "
+                UPDATE tb_product SET
+                    name='{$name}',
+                    description='{$description}',
+                    value='{$value}',
+                    photo='{$photo}',
+                    quantity='{$quantity}'
+                WHERE id='{$id}'
+            ";
+
+            $resultUpdate = $con->prepare($query);
+            $resultUpdate->execute();
+
+            echo 'Pronto, produto atualizado';
+        }
+
+        $product = $con->prepare("SELECT * FROM tb_product WHERE id='{$id}'");
+        $product->execute();
+
+        parent::render('product/edit', [
+            'product' => $product->fetch(\PDO::FETCH_ASSOC),
+        ]);
     }
 
     public function removeAction() : void
@@ -68,11 +103,11 @@ class ProductController extends AbstractController
 
         // $message = 'Pronto, produto excluido';
 
-        parent::render('_partials/message');
+        parent::renderMessage('Pronto, produto excluído');
 
-        $message = 'Pronto, produto excluido';
+        // $message = 'Pronto, produto excluido';
 
-        include dirname(__DIR__).'/view/_partials/message.php';
+        // include dirname(__DIR__).'/view/_partials/message.php';
         
     }
 }
