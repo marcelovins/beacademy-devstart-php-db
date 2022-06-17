@@ -46,8 +46,9 @@ class CategoryController extends AbstractController
     public function removeAction(): void
     {
         // echo $_GET['id'];
-        $con = Connection::getConnection();
         $id = $_GET['id'];
+        $con = Connection::getConnection();
+        // $id = $_GET['id'];
         $query = "DELETE FROM tb_category WHERE id='{$id}'";
         $result = $con->prepare($query);
         $result->execute();

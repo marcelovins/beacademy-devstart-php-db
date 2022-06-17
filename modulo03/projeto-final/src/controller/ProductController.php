@@ -49,9 +49,30 @@ class ProductController extends AbstractController
         // echo dirname(__DIR__);
         parent::render('product/add', $result);
     }
+
     public function editAction() : void
     {
         // echo dirname(__DIR__);
         parent::render('product/edit');
+    }
+
+    public function removeAction() : void
+    {
+        // echo dirname(__DIR__);
+        $id = $_GET['id'];
+
+        $con = Connection::getConnection();
+
+        $result = $con->prepare("DELETE FROM tb_product WHERE id='{$id}'");
+        $result->execute();
+
+        // $message = 'Pronto, produto excluido';
+
+        parent::render('_partials/message');
+
+        $message = 'Pronto, produto excluido';
+
+        include dirname(__DIR__).'/view/_partials/message.php';
+        
     }
 }

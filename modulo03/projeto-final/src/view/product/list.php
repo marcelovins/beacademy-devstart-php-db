@@ -34,8 +34,8 @@
                     echo "<td>{$quantity}</td>";
                     echo "<td>{$created_at}</td>";
                     echo "<td>
-                        <a href='/categorias/editar?id={$id}' class='btn btn-warning -sm'>Editar</a>
-                        <a href='/categorias/excluir?id={$id}' class='btn btn-danger -sm'>Excluir</a>
+                        <a href='/produtos/editar?id={$id}' class='btn btn-outline-warning -sm'>Editar</a>
+                        <a href='/produtos/excluir?id={$id}' class='btn btn-outline-danger -sm'>Excluir</a>
                     </td>";
                 echo '</tr>';
             }
